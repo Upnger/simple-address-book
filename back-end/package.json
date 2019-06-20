@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/Upnger/simple-address-book#readme",
   "dependencies": {
-    "fastify": "^2.5.0"
+    "fastify": "^2.5.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.10"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

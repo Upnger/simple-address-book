@@ -1,5 +1,32 @@
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true })
+const Sequelize = require('sequelize')
+
+const sequelizeConfig = {
+  dialect: 'mysql',
+  host: 'db',
+  port: 3306,
+  username: 'user',
+  password: 'password',
+  database: 'db'
+}
+const sequelize = new Sequelize(sequelizeConfig)
+fastify.decorate('db', sequelize)
+fastify.addHook('onClose', (fastifyInstance, done) => {
+  sequelize
+    .close()
+    .then(done)
+    .catch(done)
+})
+fastify.db
+  .authenticate()
+  .then(() => {
+    fastify.log.info('Connection has been established successfully.')
+  })
+  .catch(err => {
+    fastify.log.error('Unable to connect to the database:', err)
+    process.exit(1)
+  })
 
 const phoneNumberExample = {
   id: 1,
