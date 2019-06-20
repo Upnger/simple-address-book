@@ -48,16 +48,22 @@ const contactExample = {
 
 // get all contacts
 // return a array with contacts
-fastify.get('/contact', async (request, reply) => {
-  reply.code(501)
-  return [contactExample]
+fastify.get('/contact', async () => {
+  return fastify.db.models.Contact.findAll()
 })
 
 // get a specific contact
 // return a contact
 fastify.get('/contact/:contactId', async (request, reply) => {
-  reply.code(501)
-  return contactExample
+  const contact = await fastify.db.models.Contact.findByPk(
+    request.params.contactId
+  )
+  if (contact) {
+    return contact
+  } else {
+    reply.code(404)
+    return ''
+  }
 })
 
 // create a new contact
