@@ -18,10 +18,13 @@ fastify.addHook('onClose', (fastifyInstance, done) => {
     .then(done)
     .catch(done)
 })
+require('./contact.js').init(sequelize)
 fastify.db
   .authenticate()
   .then(() => {
     fastify.log.info('Connection has been established successfully.')
+    // sync is not suited for production and even less so together with force set to true
+    fastify.db.sync({ force: true })
   })
   .catch(err => {
     fastify.log.error('Unable to connect to the database:', err)
@@ -37,8 +40,8 @@ const phoneNumberExample = {
 const addressExample = 'Tingbergsgatan 15 65229 Karlstad'
 
 const contactExample = {
-  id: 1,
-  name: 'Robin Persson',
+  firstName: 'Robin',
+  lastName: 'Persson',
   phoneNumbers: [phoneNumberExample],
   addresses: [addressExample]
 }
