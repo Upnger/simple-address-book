@@ -3,6 +3,8 @@ version: "3"
 services:
   api:
     build: ./back-end
+    volumes:
+    - ./back-end/src:/usr/src/app/src
     ports:
       - "3000:3000"
     depends_on:
