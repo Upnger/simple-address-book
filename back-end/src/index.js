@@ -68,16 +68,19 @@ fastify.get('/contact/:contactId', async (request, reply) => {
 
 // create a new contact
 // return the new contact
-fastify.post('/contact', async (request, reply) => {
-  reply.code(501)
-  return contactExample
+fastify.post('/contact', async request => {
+  return fastify.db.models.Contact.create(request.body)
 })
 
 // Update a existing contact
 // return the updated contact
 fastify.put('/contact', async (request, reply) => {
-  reply.code(501)
-  return contactExample
+  const contact = await fastify.db.models.Contact.findByPk(request.body.id)
+  if (!contact) {
+    reply.code(404)
+    return ''
+  }
+  return contact.update(request.body)
 })
 
 const start = async () => {
