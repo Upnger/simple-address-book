@@ -10,6 +10,9 @@ const sequelizeConfig = {
   password: 'password',
   database: 'db'
 }
+
+fastify.register(require('fastify-cors'), {})
+
 const sequelize = new Sequelize(sequelizeConfig)
 fastify.decorate('db', sequelize)
 fastify.addHook('onClose', (fastifyInstance, done) => {
