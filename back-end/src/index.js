@@ -86,6 +86,19 @@ fastify.put('/contact', async (request, reply) => {
   return contact.update(request.body)
 })
 
+// delete a specific contact
+fastify.delete('/contact/:contactId', async (request, reply) => {
+  const numDeletedRows = await fastify.db.models.Contact.destroy({
+    where: { id: request.params.contactId }
+  })
+  if (numDeletedRows == 0) {
+    reply.code(400)
+  } else if (numDeletedRows > 1) {
+    reply.code(500)
+  }
+  return ''
+})
+
 const start = async () => {
   try {
     await fastify.listen(3000, '0.0.0.0')
