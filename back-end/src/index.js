@@ -31,20 +31,20 @@ fastify.db
     process.exit(1)
   })
 
-const phoneNumberExample = {
-  id: 1,
-  phoneNumber: '+460738021936',
-  labels: ['home']
-}
+// const phoneNumberExample = {
+//   id: 1,
+//   phoneNumber: '+460738021936',
+//   labels: ['home']
+// }
 
-const addressExample = 'Tingbergsgatan 15 65229 Karlstad'
+// const addressExample = 'Tingbergsgatan 15 65229 Karlstad'
 
-const contactExample = {
-  firstName: 'Robin',
-  lastName: 'Persson',
-  phoneNumbers: [phoneNumberExample],
-  addresses: [addressExample]
-}
+// const contactExample = {
+//   firstName: 'Robin',
+//   lastName: 'Persson',
+//   phoneNumbers: [phoneNumberExample],
+//   addresses: [addressExample]
+// }
 
 // get all contacts
 // return a array with contacts
