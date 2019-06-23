@@ -12,6 +12,9 @@
         <th>{{ contact.id }}</th>
         <td>{{ contact.firstName }}</td>
         <td>{{ contact.lastName }}</td>
+        <td>
+          <remove-button :contact-id="contact.id" @contact-removed="update" />
+        </td>
       </tr>
     </tbody>
   </table>
@@ -20,12 +23,23 @@
 <script>
 import axios from 'axios'
 
+import removeButton from '~/components/DeleteButton.vue'
+
 export default {
-  components: {},
+  components: {
+    removeButton
+  },
   asyncData() {
     return axios.get('http://localhost:3000/contact').then(res => {
       return { contacts: res.data }
     })
+  },
+  methods: {
+    update: function() {
+      return axios.get('http://localhost:3000/contact').then(res => {
+        this.contacts = res.data
+      })
+    }
   }
 }
 </script>
