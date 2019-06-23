@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "start": "node src/index.js",
-    "start-dev": "nodemon  src/index.js --legacy-watch"
+    "start-dev": "nodemon  src/index.js --legacy-watch",
+    "load-test": "loadtest -t 10 -c 10 http://localhost:3000/contact"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "loadtest": "^3.0.7",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   }
