@@ -1,9 +1,11 @@
 <template>
   <table class="table is-striped">
     <thead>
-      <td>Kontakt ID</td>
-      <td>Förnamn</td>
-      <td>Efternamn</td>
+      <tr>
+        <th>Kontakt ID</th>
+        <th>Förnamn</th>
+        <th>Efternamn</th>
+      </tr>
     </thead>
     <tbody>
       <tr v-for="contact in contacts" :key="contact.id">
