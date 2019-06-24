@@ -13,6 +13,22 @@
         <td>{{ contact.firstName }}</td>
         <td>{{ contact.lastName }}</td>
         <td>
+          <button
+            class="button is-primary is-small"
+            @click="navigateToContactPage(contact)"
+          >
+            Visa
+          </button>
+        </td>
+        <td>
+          <button
+            class="button is-primary is-small"
+            @click="navigateToContactPage(contact, true)"
+          >
+            Redigera
+          </button>
+        </td>
+        <td>
           <remove-button :contact-id="contact.id" @contact-removed="update" />
         </td>
       </tr>
@@ -38,6 +54,15 @@ export default {
     update: function() {
       return axios.get('http://localhost:3000/contact').then(res => {
         this.contacts = res.data
+      })
+    },
+    navigateToContactPage: function(contact, edit = false) {
+      this.$router.push({
+        name: 'contact-id',
+        params: { id: contact.id },
+        query: {
+          edit
+        }
       })
     }
   }

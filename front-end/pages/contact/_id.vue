@@ -1,5 +1,5 @@
 <template>
-  <contact-form :contact="contact" />
+  <contact-form :edit="edit" :contact="contact" />
 </template>
 
 <script>
@@ -14,6 +14,11 @@ export default {
   data: function() {
     return {
       contact: null
+    }
+  },
+  computed: {
+    edit: function() {
+      return !!this.$route.query.edit
     }
   },
   beforeCreate: function(params) {
