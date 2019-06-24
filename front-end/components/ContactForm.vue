@@ -1,5 +1,12 @@
 <template>
   <div v-if="contact">
+    <button
+      v-if="!editMode && exsisting"
+      class="button is-primary"
+      @click="enableEditMode"
+    >
+      Redigera
+    </button>
     <div class="field">
       <label class="label">Förnamn:</label>
       <div class="control">
@@ -8,6 +15,7 @@
           class="input"
           type="text"
           placeholder="Robin"
+          :disabled="!editMode"
         />
       </div>
     </div>
@@ -19,6 +27,7 @@
           class="input"
           type="text"
           placeholder="Persson"
+          :disabled="!editMode"
         />
       </div>
     </div>
@@ -43,6 +52,16 @@ export default {
       default: () => {
         return newContactDefaultValues
       }
+    },
+    edit: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  data: function(params) {
+    return {
+      editMode: this.edit
     }
   },
   computed: {
@@ -72,6 +91,9 @@ export default {
         .catch(function() {
           alert('failed to update contact')
         })
+    },
+    enableEditMode: function() {
+      this.editMode = true
     }
   }
 }
