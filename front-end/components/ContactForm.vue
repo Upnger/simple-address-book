@@ -22,7 +22,10 @@
         />
       </div>
     </div>
-    <button class="button is-primary" @click="create">Skapa</button>
+    <button v-if="exsisting" class="button is-primary" @click="update">
+      Uppdatera
+    </button>
+    <button v-else class="button is-primary" @click="create">Skapa</button>
   </div>
 </template>
 
@@ -42,6 +45,11 @@ export default {
       }
     }
   },
+  computed: {
+    exsisting: function() {
+      return !!this.contact.id
+    }
+  },
   methods: {
     create: function() {
       return axios
@@ -52,6 +60,17 @@ export default {
         })
         .catch(function() {
           alert('failed to create new contact')
+        })
+    },
+    update: function() {
+      return axios
+        .put('http://localhost:3000/contact', this.contact)
+        .then(res => {
+          this.contacts = newContactDefaultValues
+          alert('Kontakt uppdaterad')
+        })
+        .catch(function() {
+          alert('failed to update contact')
         })
     }
   }
