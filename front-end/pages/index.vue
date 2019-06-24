@@ -1,39 +1,44 @@
 <template>
-  <table class="table is-striped">
-    <thead>
-      <tr>
-        <th>Kontakt ID</th>
-        <th>Förnamn</th>
-        <th>Efternamn</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="contact in contacts" :key="contact.id">
-        <th>{{ contact.id }}</th>
-        <td>{{ contact.firstName }}</td>
-        <td>{{ contact.lastName }}</td>
-        <td>
-          <button
-            class="button is-primary is-small"
-            @click="navigateToContactPage(contact)"
-          >
-            Visa
-          </button>
-        </td>
-        <td>
-          <button
-            class="button is-primary is-small"
-            @click="navigateToContactPage(contact, true)"
-          >
-            Redigera
-          </button>
-        </td>
-        <td>
-          <remove-button :contact-id="contact.id" @contact-removed="update" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <th>Kontakt ID</th>
+          <th>Förnamn</th>
+          <th>Efternamn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="contact in contacts" :key="contact.id">
+          <th>{{ contact.id }}</th>
+          <td>{{ contact.firstName }}</td>
+          <td>{{ contact.lastName }}</td>
+          <td>
+            <button
+              class="button is-primary is-small"
+              @click="navigateToContactPage(contact)"
+            >
+              Visa
+            </button>
+          </td>
+          <td>
+            <button
+              class="button is-primary is-small"
+              @click="navigateToContactPage(contact, true)"
+            >
+              Redigera
+            </button>
+          </td>
+          <td>
+            <remove-button :contact-id="contact.id" @contact-removed="update" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nuxt-link class="button is-primary" to="/contact"
+      >Skapa ny kontakt</nuxt-link
+    >
+  </div>
 </template>
 
 <script>
