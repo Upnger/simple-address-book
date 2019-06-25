@@ -6,6 +6,7 @@
           <th>Kontakt ID</th>
           <th>Förnamn</th>
           <th>Efternamn</th>
+          <th>Telefonnummer</th>
         </tr>
       </thead>
       <tbody>
@@ -13,6 +14,7 @@
           <th>{{ contact.id }}</th>
           <td>{{ contact.firstName }}</td>
           <td>{{ contact.lastName }}</td>
+          <td>{{ contact.phoneNumbers[0].phoneNumber }}</td>
           <td>
             <button
               class="button is-primary is-small"

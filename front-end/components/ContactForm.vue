@@ -31,6 +31,10 @@
         />
       </div>
     </div>
+    <phone-numbers-form
+      :phone-numbers="contact.phoneNumbers"
+      :edit-mode="editMode"
+    />
     <button v-if="exsisting" class="button is-primary" @click="update">
       Uppdatera
     </button>
@@ -40,11 +44,14 @@
 
 <script>
 import axios from 'axios'
+import PhoneNumbersForm from './PhoneNumbersForm.vue'
 const newContactDefaultValues = {
   firstName: '',
-  lastName: ''
+  lastName: '',
+  phoneNumbers: []
 }
 export default {
+  components: { PhoneNumbersForm },
   props: {
     contact: {
       type: Object,
