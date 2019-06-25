@@ -52,14 +52,19 @@ fastify.db
 // get all contacts
 // return a array with contacts
 fastify.get('/contact', async () => {
-  return fastify.db.models.contact.findAll()
+  return fastify.db.models.contact.findAll({
+    include: [sequelize.models.phoneNumber]
+  })
 })
 
 // get a specific contact
 // return a contact
 fastify.get('/contact/:contactId', async (request, reply) => {
   const contact = await fastify.db.models.contact.findByPk(
-    request.params.contactId
+    request.params.contactId,
+    {
+      include: [sequelize.models.phoneNumber]
+    }
   )
   if (contact) {
     return contact
