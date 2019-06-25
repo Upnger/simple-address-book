@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Contact extends Sequelize.Model {}
-  Contact.init(
+  class contact extends Sequelize.Model {}
+  contact.init(
     {
       // attributes createdAt,updatedAt  is automatic added by Sequelize
       id: {
@@ -23,6 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
   const phoneNumber = sequelize.import(__dirname + '/phoneNumber.js')
-  Contact.hasMany(phoneNumber)
-  return Contact
+  contact.hasMany(phoneNumber)
+  return contact
 }

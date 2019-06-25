@@ -52,13 +52,13 @@ fastify.db
 // get all contacts
 // return a array with contacts
 fastify.get('/contact', async () => {
-  return fastify.db.models.Contact.findAll()
+  return fastify.db.models.contact.findAll()
 })
 
 // get a specific contact
 // return a contact
 fastify.get('/contact/:contactId', async (request, reply) => {
-  const contact = await fastify.db.models.Contact.findByPk(
+  const contact = await fastify.db.models.contact.findByPk(
     request.params.contactId
   )
   if (contact) {
@@ -72,7 +72,7 @@ fastify.get('/contact/:contactId', async (request, reply) => {
 // create a new contact
 // return the new contact
 fastify.post('/contact', async request => {
-  const contact = await fastify.db.models.Contact.create(request.body, {
+  const contact = await fastify.db.models.contact.create(request.body, {
     include: [sequelize.models.phoneNumber]
   })
   return contact
@@ -81,7 +81,7 @@ fastify.post('/contact', async request => {
 // Update a existing contact
 // return the updated contact
 fastify.put('/contact', async (request, reply) => {
-  const contact = await fastify.db.models.Contact.findByPk(request.body.id)
+  const contact = await fastify.db.models.contact.findByPk(request.body.id)
   if (!contact) {
     reply.code(404)
     return ''
@@ -91,7 +91,7 @@ fastify.put('/contact', async (request, reply) => {
 
 // delete a specific contact
 fastify.delete('/contact/:contactId', async (request, reply) => {
-  const numDeletedRows = await fastify.db.models.Contact.destroy({
+  const numDeletedRows = await fastify.db.models.contact.destroy({
     where: { id: request.params.contactId }
   })
   if (numDeletedRows == 0) {
