@@ -14,7 +14,7 @@
           <th>{{ contact.id }}</th>
           <td>{{ contact.firstName }}</td>
           <td>{{ contact.lastName }}</td>
-          <td>{{ contact.phoneNumbers[0].phoneNumber }}</td>
+          <td>{{ phoneNumber(contact) }}</td>
           <td>
             <button
               class="button is-primary is-small"
@@ -71,6 +71,11 @@ export default {
           edit
         }
       })
+    },
+    phoneNumber: function(contact) {
+      return contact.phoneNumbers.length > 0
+        ? contact.phoneNumbers[0].phoneNumber
+        : ''
     }
   }
 }
