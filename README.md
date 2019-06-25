@@ -49,6 +49,7 @@ Progressive Web App
 
 ## Todo (will probably never be done due to the nature of this project)
 
+- Not storing secrets in this repo
 - Add tests in the back-end
 - Increase test coverage in front-end
 - Maybe use transaction on updates of the database(conflicted if partial create/update is better in this application)
