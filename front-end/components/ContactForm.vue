@@ -47,10 +47,16 @@
       :phone-numbers="contact.phoneNumbers"
       :edit-mode="editMode"
     />
-    <button v-if="exsisting" class="button is-primary" @click="update">
+    <button
+      v-if="exsisting && editMode"
+      class="button is-primary"
+      @click="update"
+    >
       Uppdatera
     </button>
-    <button v-else class="button is-primary" @click="create">Skapa</button>
+    <button v-else-if="editMode" class="button is-primary" @click="create">
+      Skapa
+    </button>
   </div>
 </template>
 
