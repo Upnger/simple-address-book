@@ -1,5 +1,8 @@
 <template>
   <div v-if="contact">
+    <button class="button is-primary" @click="navigateToallContacts">
+      Till alla kontakter
+    </button>
     <button
       v-if="!editMode && exsisting"
       class="button is-primary"
@@ -119,6 +122,11 @@ export default {
     },
     enableEditMode: function() {
       this.editMode = true
+    },
+    navigateToallContacts: function(contact, edit = false) {
+      this.$router.push({
+        name: 'index'
+      })
     }
   }
 }
