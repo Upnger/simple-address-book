@@ -86,12 +86,19 @@ fastify.post('/contact', async request => {
 // Update a existing contact
 // return the updated contact
 fastify.put('/contact', async (request, reply) => {
-  const contact = await fastify.db.models.contact.findByPk(request.body.id)
+  const contact = await fastify.db.models.contact.findByPk(request.body.id, {
+    include: [sequelize.models.phoneNumber]
+  })
   if (!contact) {
     reply.code(404)
     return ''
   }
-  return contact.update(request.body)
+  await contact.update(request.body)
+  const phoneNumbers = await fastify.db.models.phoneNumber.bulkCreate(
+    request.body.phoneNumbers
+  )
+  await contact.setPhoneNumbers(phoneNumbers)
+  return contact.reload()
 })
 
 // delete a specific contact
