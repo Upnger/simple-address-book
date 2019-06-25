@@ -72,7 +72,10 @@ fastify.get('/contact/:contactId', async (request, reply) => {
 // create a new contact
 // return the new contact
 fastify.post('/contact', async request => {
-  return fastify.db.models.Contact.create(request.body)
+  const contact = await fastify.db.models.Contact.create(request.body, {
+    include: [sequelize.models.phoneNumber]
+  })
+  return contact
 })
 
 // Update a existing contact

@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class Contact extends Sequelize.Model {}
-  Contact.init(
+  class phoneNumber extends Sequelize.Model {}
+  phoneNumber.init(
     {
       // attributes createdAt,updatedAt  is automatic added by Sequelize
       id: {
@@ -9,20 +10,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      firstName: {
+      phoneNumber: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      lastName: {
+      label: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       }
     },
     {
       sequelize
     }
   )
-  const phoneNumber = sequelize.import(__dirname + '/phoneNumber.js')
-  Contact.hasMany(phoneNumber)
-  return Contact
+  return phoneNumber
 }
