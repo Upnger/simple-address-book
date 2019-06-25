@@ -37,16 +37,14 @@ fastify.db
 // const phoneNumberExample = {
 //   id: 1,
 //   phoneNumber: '+460738021936',
-//   labels: ['home']
+//   label: ['home']
 // }
-
-// const addressExample = 'Tingbergsgatan 15 65229 Karlstad'
 
 // const contactExample = {
 //   firstName: 'Robin',
 //   lastName: 'Persson',
 //   phoneNumbers: [phoneNumberExample],
-//   addresses: [addressExample]
+//   address: 'Tingbergsgatan 15 65229 Karlstad'
 // }
 
 // get all contacts
