@@ -31,6 +31,18 @@
         />
       </div>
     </div>
+    <div class="field">
+      <label class="label">Adress:</label>
+      <div class="control">
+        <input
+          v-model="contact.address"
+          class="input"
+          type="text"
+          placeholder="tingbergsgatan 15"
+          :disabled="!editMode"
+        />
+      </div>
+    </div>
     <phone-numbers-form
       :phone-numbers="contact.phoneNumbers"
       :edit-mode="editMode"
