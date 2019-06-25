@@ -25,5 +25,12 @@ services:
     volumes:
       - my-db:/var/lib/mysql
     restart: on-failure
+  front-end:
+    build: ./front-end
+    ports:
+      - "3001:3001"
+    depends_on:
+      - api
+    restart: on-failure
 volumes:
   my-db:
