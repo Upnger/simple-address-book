@@ -1,21 +1,20 @@
 const Sequelize = require('sequelize')
-const Model = Sequelize.Model
-class Contact extends Model {}
-module.exports.init = function init(sequelize) {
+module.exports = (sequelize, DataTypes) => {
+  class Contact extends Sequelize.Model {}
   Contact.init(
     {
       // attributes createdAt,updatedAt  is automatic added by Sequelize
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       firstName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
       },
       lastName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
       }
     },
@@ -23,4 +22,5 @@ module.exports.init = function init(sequelize) {
       sequelize
     }
   )
+  return Contact
 }

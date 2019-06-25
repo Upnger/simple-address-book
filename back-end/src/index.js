@@ -21,7 +21,7 @@ fastify.addHook('onClose', (fastifyInstance, done) => {
     .then(done)
     .catch(done)
 })
-require('./contact.js').init(sequelize)
+sequelize.import(__dirname + '/models/contact.js')
 fastify.db
   .authenticate()
   .then(() => {
